@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Youtube Channels Dataset</title>
+</head>
+<body>
+    <h1>Query Youtube Channels Dataset</h1>
+    <form action="/" method="post">
+
+        <label>
+            <input type="radio" name="query_type" value="channelId" onclick="validateInput()"> By channel Id
+        </label>
+        <label>
+            <input type="radio" name="query_type" value="url" onclick="validateInput()"> By channel url
+        </label>
+
+        <br>
+        <label for="query_value">Enter channel Id or url:</label>
+        <input type="text" name="query_value" id="query_value" style="width: 300px;" oninput="validateInput()">
+        <br>
+
+        <input type="submit" value="Get data" id="submitBtn" disabled>
+    </form>
+
+    <script>
+        function validateInput() {
+            const inputField = document.getElementById('query_value');
+            const queryTypeRadios = document.querySelectorAll('input[name="query_type"]');
+            const submitBtn = document.getElementById('submitBtn');
+
+            let isQueryTypeSelected = false;
+
+            // Check if any of the query type radio buttons are selected
+            queryTypeRadios.forEach(radio => {
+                if (radio.checked) {
+                    isQueryTypeSelected = true;
+                }
+            });
+
+            // Enable or disable the submit button based on conditions
+            if (inputField.value.trim() === '' || !isQueryTypeSelected) {
+                submitBtn.disabled = true;
+            } else {
+                submitBtn.disabled = false;
+            }
+        }
+    </script>
+
+</body>
+</html>
